@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>OrientacaoObjetos.Program_2</StartupObject>
+    <StartupObject>OrientacaoObjetos.Program_3</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,9 +49,13 @@
     <Compile Include="GerenciadorBonificacoes.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ContaCorrente.cs" />
+    <Compile Include="Models\Auxiliar.cs" />
+    <Compile Include="Models\GerenteDeConta.cs" />
+    <Compile Include="Models\Designer.cs" />
     <Compile Include="Models\Diretor.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Program_3.cs" />
     <Compile Include="Program_2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

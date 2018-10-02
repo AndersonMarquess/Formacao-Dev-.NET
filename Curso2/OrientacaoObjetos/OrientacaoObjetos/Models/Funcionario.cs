@@ -1,15 +1,24 @@
 ﻿namespace OrientacaoObjetos.Models
 {
-    class Funcionario
+    abstract class Funcionario
     {
         public string Nome { get; set; }
-        public string CPF { get; set; }
-        public double Salario { get; set; }
+        public string CPF { get; private set; }
+        public double Salario { get; protected set; }
+
+        public static int TotalDeFuncionarios { get; private set; }
+
+        public Funcionario(string cpf, double salario) {
+            TotalDeFuncionarios++;
+            CPF = cpf;
+            Salario = salario;
+        }
 
         //virtual - Permite uma implementação e também que uma classe filha faça override.
-        public virtual double getBonificacao() {
-            return Salario * 0.10;
-        }
+        //abstract - Obriga fazer o override
+        public abstract double getBonificacao();
+
+        public abstract void aumentarSalario();
 
     }
 }

@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>OrientacaoObjetos.Program_2</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,9 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs" />
-    <Compile Include="ContaCorrente.cs" />
+    <Compile Include="GerenciadorBonificacoes.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\ContaCorrente.cs" />
+    <Compile Include="Models\Diretor.cs" />
+    <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Program_2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

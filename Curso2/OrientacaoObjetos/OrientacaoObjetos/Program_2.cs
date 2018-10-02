@@ -14,7 +14,7 @@ namespace OrientacaoObjetos
             };
             gb.registrar(f1);
 
-            Funcionario d1 = new Diretor("999.876.543-21") {
+            Funcionario d1 = new Diretor("999.876.543-21", "123") {
                 Nome = "Nome 2"
             };
             gb.registrar(d1);

@@ -1,4 +1,6 @@
-﻿namespace OrientacaoObjetos.Models
+﻿using System;
+
+namespace OrientacaoObjetos.Models
 {
     abstract class Funcionario
     {
@@ -19,6 +21,5 @@
         public abstract double getBonificacao();
 
         public abstract void aumentarSalario();
-
     }
 }

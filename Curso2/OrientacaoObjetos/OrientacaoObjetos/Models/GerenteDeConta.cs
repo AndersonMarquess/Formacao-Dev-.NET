@@ -1,8 +1,9 @@
 ﻿namespace OrientacaoObjetos.Models
 {
-    class GerenteDeConta : Funcionario {
+    class GerenteDeConta : FuncionarioAutenticavel {
 
-        public GerenteDeConta(string cpf) : base(cpf, 4000) {
+        public GerenteDeConta(string cpf, string senha)
+            : base(cpf, 3000, senha) {
         }
 
         public override double getBonificacao() {

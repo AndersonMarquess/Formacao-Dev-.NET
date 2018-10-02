@@ -1,8 +1,10 @@
 ﻿namespace OrientacaoObjetos.Models
 {
-    class Diretor : Funcionario {
+    class Diretor : FuncionarioAutenticavel {
 
-        public Diretor(string cpf) : base(cpf, 5000) {
+
+        public Diretor(string cpf, string senha)
+            : base(cpf, 5000, senha) {
         }
 
         //Faz o override do virtual no Funcionario

@@ -1,4 +1,5 @@
 ﻿using OrientacaoObjetos.Models;
+using OrientacaoObjetos.Sistemas;
 using System;
 
 namespace OrientacaoObjetos
@@ -13,7 +14,7 @@ namespace OrientacaoObjetos
                 Nome = "Pedro"
             };
 
-            Diretor roberta = new Diretor("159.753.398-04") {
+            Diretor roberta = new Diretor("159.753.398-04", "123") {
                 Nome = "Roberta"
             };
 
@@ -21,7 +22,7 @@ namespace OrientacaoObjetos
                 Nome = "Igor"
             };
 
-            GerenteDeConta camila = new GerenteDeConta("326.985.628-89") {
+            GerenteDeConta camila = new GerenteDeConta("326.985.628-89", "abc") {
                 Nome = "Camila"
             };
 
@@ -31,7 +32,30 @@ namespace OrientacaoObjetos
             gb.registrar(camila);
 
             Console.WriteLine("Total de bonificações: " + gb.totalBonificacoes);
+
+            autenticar();
+
             Console.ReadLine();
+        }
+
+        static void autenticar() {
+
+            Diretor roberta = new Diretor("159.753.398-04", "123") {
+                Nome = "Roberta"
+            };
+
+            GerenteDeConta camila = new GerenteDeConta("326.985.628-89", "abc") {
+                Nome = "Camila"
+            };
+
+            ParceiroComercial parceiro = new ParceiroComercial() {
+                Senha = "000"
+            };
+
+            SistemaInterno si = new SistemaInterno();
+            si.Logar(camila, "abcd");
+            si.Logar(camila, "abc");
+            si.Logar(parceiro, "000");
         }
     }
 }

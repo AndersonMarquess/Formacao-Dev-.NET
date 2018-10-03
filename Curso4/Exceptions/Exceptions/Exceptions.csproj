@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Exceptions.TestaExceptionContaCorrente</StartupObject>
+    <StartupObject>Exceptions.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,13 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LeitorDeArquivos.cs" />
+    <Compile Include="Models\LeitorDeArquivos.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ContaCorrente.cs" />
-    <Compile Include="OperacaoFinanceiraException.cs" />
+    <Compile Include="Exception\OperacaoFinanceiraException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaldoInsuficienteException.cs" />
+    <Compile Include="Exception\SaldoInsuficienteException.cs" />
     <Compile Include="TestaExceptionContaCorrente.cs" />
   </ItemGroup>
   <ItemGroup>

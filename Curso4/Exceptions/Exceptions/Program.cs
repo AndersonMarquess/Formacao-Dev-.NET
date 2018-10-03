@@ -1,36 +1,24 @@
-﻿using OrientacaoObjetos;
-using System;
+﻿using System;
 
 namespace Exceptions
 {
     class Program
     {
         static void Main(string[] args) {
-            ContaCorrente cc = new ContaCorrente(123, 45621);
-            Console.WriteLine("Valor da taxa: " + ContaCorrente.TaxaOperacao);
-
-            testaDivisao(10);
-
+            try {
+                carregarContas();
+            } catch(Exception) {
+                Console.WriteLine("Exception capturada no método main.");
+            }
             Console.ReadLine();
         }
 
-        private static void testaDivisao(int divisor) {
-            try {
-                int result = dividir(10, divisor);
-                Console.WriteLine("O Resultado de 10 dividido por " + divisor + " = " + result);
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
-
-                throw; // Encerra o método passando a exception recebida
+        private static void carregarContas() {
+            //equivalente ao try with resources
+            using(LeitorDeArquivos leitor = new LeitorDeArquivos("arquivo")) {
+                leitor.lerProximaLinha();
+                leitor.lerProximaLinha();
             }
-        }
-
-        private static int dividir(int numero, int divisor) {
-            ContaCorrente c = null;
-            Console.WriteLine(c.Cliente.Cpf);
-
-            return numero / divisor;
         }
     }
 }

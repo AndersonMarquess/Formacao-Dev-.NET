@@ -37,3 +37,4 @@ msbuild.wrn
 /out/
 */.vscode/
 .tern-project
+.gitattributes

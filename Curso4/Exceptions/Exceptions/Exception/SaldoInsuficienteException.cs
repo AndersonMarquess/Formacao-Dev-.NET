@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Exceptions
 {
-    class SaldoInsuficienteException : Exception {
+    class SaldoInsuficienteException : OperacaoFinanceiraException {
         public double Saldo { get; }
         public double ValorSaque{ get; }
 
@@ -18,6 +18,10 @@ namespace Exceptions
             : this("Erro: saldo disponível "+saldo+", tentativa de saque: "+valorSaque) {
             Saldo = saldo;
             ValorSaque = valorSaque;
+        }
+
+        public SaldoInsuficienteException(string message, Exception innerException)
+            : base(message, innerException) {
         }
     }
 }

@@ -9,6 +9,7 @@ namespace OrientacaoObjetos
         //Transforma em readonly e só pode ser modificado no construtor
         public int Agencia { get; }
         public int Conta { get; }
+        public int ContadorSaquesNaoPermitido { get; private set; }
 
         //Temos o Get publico e o Set privado
         public static double TaxaOperacao { get; private set; }
@@ -43,9 +44,11 @@ namespace OrientacaoObjetos
 
         public void sacar(double valorSaque) {
             if(valorSaque <= 0)
-                throw new SaldoInsuficienteException("Quantia de "+ valorSaque + " indisponível para saque.");
-            if(valorSaque > Saldo)
+                throw new ArgumentException("Quantia inválida para saque.", nameof(valorSaque));
+            if(valorSaque > Saldo) {
+                ContadorSaquesNaoPermitido++;
                 throw new SaldoInsuficienteException(Saldo, valorSaque);
+            }
             Saldo -= valorSaque;
         }
     }

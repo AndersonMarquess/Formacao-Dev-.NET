@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComparadorClientePorCPF.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ListaCaseira.cs" />
     <Compile Include="TestesExtensoes.cs" />

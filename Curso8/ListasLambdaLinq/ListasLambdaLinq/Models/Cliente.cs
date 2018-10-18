@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OrientacaoObjetos
 {
-    public class Cliente {
+    public class Cliente : IComparable {
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Profissao { get; set; }
@@ -31,6 +32,15 @@ namespace OrientacaoObjetos
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Profissao);
             return hashCode;
+        }
+
+        public int CompareTo(object obj) {
+            var objc = obj as Cliente;
+
+            if(objc == null)
+                return -1;
+
+            return this.Nome.CompareTo(objc.Nome) - (this.Profissao.CompareTo(objc.Profissao));
         }
     }
 }

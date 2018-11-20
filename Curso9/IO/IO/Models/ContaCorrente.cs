@@ -6,15 +6,17 @@ namespace IO.Models
     {
         public int Agencia { get; private set; }
         public int Conta { get; private set; }
-
+        public string Titular { get; set; }
         public double Saldo { get; private set; }
 
-        public ContaCorrente(int agencia, int conta) {
+        public ContaCorrente(int agencia, int conta, string titular, double saldo = 0.0d) {
             if(agencia < 0 || conta < 0)
                 throw new ArgumentException($"A {Agencia} ou {Conta} não pode ter um valor menor que 0.");
 
             Agencia = agencia;
             Conta = conta;
+            Saldo = saldo;
+            Titular = titular;
         }
 
         public string Sacar(double valor) {
@@ -33,7 +35,7 @@ namespace IO.Models
         }
 
         public override string ToString() {
-            return "Agencia: "+Agencia+" \nConta: "+Conta+" \nSaldo: "+Saldo;
+            return $"Titular: {Titular} \nAgência: {Agencia} \nConta: {Conta} \nSaldo: {Saldo}";
         }
     }
 }

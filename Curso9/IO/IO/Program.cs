@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IO.Models;
+using System;
 using System.IO;
 using System.Text;
 
@@ -15,12 +16,25 @@ namespace IO
             using(var leitor = new StreamReader(fluxoDoArquivo)) {
                 while(!leitor.EndOfStream) {
                     var linha = leitor.ReadLine();
-                    Console.WriteLine(linha);
+
+                    Console.WriteLine(ParseLinhaParaContaCorrente(linha));
+                    Console.WriteLine("=================");
                 }
             }
 
 
             Console.ReadLine();
+        }
+
+        private static ContaCorrente ParseLinhaParaContaCorrente(string linha) {
+            var dados = linha.Split(' ');
+
+            int agencia = Convert.ToInt32(dados[0]);
+            int conta = Convert.ToInt32(dados[1]);
+            double saldo = Convert.ToDouble(dados[2].Replace(".",","));
+            string titular = dados[3];
+
+            return new ContaCorrente(agencia, conta, titular, saldo);
         }
     }
 }

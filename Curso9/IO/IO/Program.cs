@@ -17,7 +17,7 @@ namespace IO
 
                 while(numeroDeBytesLidos != 0) {
                     numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 128);
-                    printBuffer(buffer);
+                    printBuffer(buffer, numeroDeBytesLidos);
                 }
             };
 
@@ -25,11 +25,11 @@ namespace IO
         }
 
 
-        private static void printBuffer(byte[] buffer) {
+        private static void printBuffer(byte[] buffer, int qtdBytesLidos) {
 
-            //Transforma o buffer em string
+            //Transforma o buffer em string, delimitando o tamanho máximo para leitura
             var utf8 = Encoding.Default;
-            var texto = utf8.GetString(buffer);
+            var texto = utf8.GetString(buffer, 0, qtdBytesLidos);
 
             Console.Write(texto);
         }

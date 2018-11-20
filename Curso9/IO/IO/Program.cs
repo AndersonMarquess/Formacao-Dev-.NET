@@ -28,9 +28,12 @@ namespace IO
 
 
         private static void printBuffer(byte[] buffer) {
-            foreach(var item in buffer) {
-                Console.Write(item + " ");
-            }
+
+            //Transforma o buffer em string
+            var utf8 = Encoding.Default;
+            var texto = utf8.GetString(buffer);
+
+            Console.Write(texto);
         }
     }
 }

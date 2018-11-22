@@ -5,9 +5,13 @@ namespace IO
     class Program
     {
         static void Main(string[] args) {
-            //new LerStream().PrintDadosContaCorrente();
+            var ls = new LerStream();
+            //ls.PrintDadosContaCorrente();
+            ls.PrintDadosBinarios();
 
-            new GravarStream().CriarArquivoComWriter();
+            //var gs = new GravarStream();
+            //gs.CriarArquivoComWriter();
+            //gs.CriarArquivoBinario();
 
             Console.ReadLine();
         }

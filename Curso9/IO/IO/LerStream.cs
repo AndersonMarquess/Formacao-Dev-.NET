@@ -32,5 +32,20 @@ namespace IO
 
             return new ContaCorrente(agencia, conta, titular, saldo);
         }
+
+        public void PrintDadosBinarios() {
+            var filePath = "DadosBinarios.data";
+
+            using(var fluxo = new FileStream(filePath, FileMode.Open))
+            using(var binReader = new BinaryReader(fluxo)) {
+
+                var conta = binReader.ReadInt32();
+                var agencia = binReader.ReadInt32();
+                var saldo = binReader.ReadDouble();
+                var titular = binReader.ReadString();
+
+                Console.WriteLine($"Titular: {titular} \nAgência: {agencia} \nConta: {conta} \nSaldo: {saldo}");
+            }
+        }
     }
 }

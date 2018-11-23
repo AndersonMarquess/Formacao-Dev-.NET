@@ -144,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\LojaContext.cs" />
+    <Compile Include="DAO\IProdutoDAO.cs" />
+    <Compile Include="DAO\ProdutoDAO.cs" />
     <Compile Include="models\Produto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

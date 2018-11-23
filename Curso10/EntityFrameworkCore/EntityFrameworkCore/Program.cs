@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFrameworkCore.DAO;
+using System;
 using System.Linq;
 
 namespace EntityFrameworkCore
@@ -19,19 +20,16 @@ namespace EntityFrameworkCore
         private static void GravarComEntity() {
             Produto p = new Produto("Livro Mock 1", "Livros", 9.90);
 
-            using(var contexto = new LojaContext()) {
+            using(var contexto = new ProdutoDAO()) {
                 //Adiciona o produto
-                contexto.Produtos.Add(p);
-
-                //Salva as alterações
-                contexto.SaveChanges();
+                contexto.Insert(p);
             }
         }
 
         private static void RecuperarProduto() {
-            using(var contexto = new LojaContext()) {
+            using(var contexto = new ProdutoDAO()) {
                 //Recupera os produtos salvos e retorna uma lista
-                var produtos = contexto.Produtos.ToList();
+                var produtos = contexto.FindAll();
 
                 Console.WriteLine("Foram encontrados {0} produtos.", produtos.Count);
 
@@ -41,25 +39,20 @@ namespace EntityFrameworkCore
         }
 
         private static void ExcluirProdutos() {
-            using(var contexto = new LojaContext()) {
+            using(var contexto = new ProdutoDAO()) {
                 //Recupera lista de produtos
-                var produtos = contexto.Produtos.ToList();
+                var produtos = contexto.FindAll();
 
                 //Faz a remoção
-                produtos.ForEach(p => contexto.Produtos.Remove(p));
-
-                //Efetiva a alteração
-                contexto.SaveChanges();
+                produtos.ForEach(p => contexto.Remove(p));
             }
         }
 
         private static void AtualizarProduto() {
-
-            using(var contexto = new LojaContext()) {
-                Produto produto = contexto.Produtos.First();
-
+            using(var contexto = new ProdutoDAO()) {
+                Produto produto = contexto.FindAll().First();
                 produto.Nome = "Livro atualizado";
-                contexto.SaveChanges();
+                contexto.Update(produto);
             }
         }
     }

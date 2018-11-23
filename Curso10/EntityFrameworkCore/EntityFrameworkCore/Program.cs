@@ -6,9 +6,11 @@ namespace EntityFrameworkCore
     class Program {
 
         static void Main(string[] args) {
-            GravarComEntity();
+            //GravarComEntity();
+            //RecuperarProduto();
+            //ExcluirProdutos();
             RecuperarProduto();
-            ExcluirProdutos();
+            AtualizarProduto();
             RecuperarProduto();
 
             Console.ReadLine();
@@ -47,6 +49,16 @@ namespace EntityFrameworkCore
                 produtos.ForEach(p => contexto.Produtos.Remove(p));
 
                 //Efetiva a alteração
+                contexto.SaveChanges();
+            }
+        }
+
+        private static void AtualizarProduto() {
+
+            using(var contexto = new LojaContext()) {
+                Produto produto = contexto.Produtos.First();
+
+                produto.Nome = "Livro atualizado";
                 contexto.SaveChanges();
             }
         }

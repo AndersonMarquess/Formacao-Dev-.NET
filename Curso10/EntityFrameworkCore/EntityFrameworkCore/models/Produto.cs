@@ -15,5 +15,9 @@
 
         public Produto() {
         }
+
+        public override string ToString() {
+            return $"Id: {Id} - Categoria: {Categoria} - Nome: {Nome} - Preço: R${Preco}";
+        }
     }
 }

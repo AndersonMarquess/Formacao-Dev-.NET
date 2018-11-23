@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Linq;
 
 namespace EntityFrameworkCore
 {
     class Program {
 
         static void Main(string[] args) {
-            Console.WriteLine("Gravando arquivo, pressione enter para terminar.");
-            GravarComEntity();
+            //GravarComEntity();
+            RecuperarProduto();
+
             Console.ReadLine();
         }
 
@@ -18,6 +20,15 @@ namespace EntityFrameworkCore
                 contexto.Produtos.Add(p);
                 //Salva as alterações
                 contexto.SaveChanges();
+            }
+        }
+
+        private static void RecuperarProduto() {
+            using(var rep = new LojaContext()) {
+                //Recupera os produtos salvos e retorna uma lista
+                var produtos = rep.Produtos.ToList();
+                //Imprime a lista de produtos
+                produtos.ForEach(p => Console.WriteLine(p));
             }
         }
     }

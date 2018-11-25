@@ -16,8 +16,9 @@
         public Produto() {
         }
 
+        //Preco:C2 => R$ 9,90
         public override string ToString() {
-            return $"Id: {Id} - Categoria: {Categoria} - Nome: {Nome} - Preço: R${Preco}";
+            return $"Id: {Id} - Categoria: {Categoria} - Nome: {Nome} - Preço: {Preco:C2}";
         }
     }
 }

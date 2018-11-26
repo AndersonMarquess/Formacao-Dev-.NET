@@ -21,9 +21,7 @@ namespace EntityFrameworkCore.DAO {
         }
 
         public Produto FindById(int id) {
-            return contexto.Produtos.ToList()
-                .Where(p => p.Id.Equals(id))
-                .First();
+            return contexto.Produtos.Find(id);
         }
 
         public void Insert(Produto produto) {

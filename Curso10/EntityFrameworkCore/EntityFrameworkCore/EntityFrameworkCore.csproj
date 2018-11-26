@@ -173,6 +173,15 @@
     <Compile Include="DAO\LojaContext.cs" />
     <Compile Include="DAO\IProdutoDAO.cs" />
     <Compile Include="DAO\ProdutoDAO.cs" />
+    <Compile Include="Migrations\20181126161137_Inicial.cs" />
+    <Compile Include="Migrations\20181126161137_Inicial.designer.cs">
+      <DependentUpon>20181126161137_Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20181126161321_Unidade.cs" />
+    <Compile Include="Migrations\20181126161321_Unidade.designer.cs">
+      <DependentUpon>20181126161321_Unidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LojaContextModelSnapshot.cs" />
     <Compile Include="models\Produto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,8 +14,7 @@ namespace EntityFrameworkCore
 
             using(var contexto = new LojaContext()) {
                 ImprimirSQL(contexto);
-                contexto.Produtos.ToList().ForEach(p => Console.WriteLine(p));
-                ImprimirAlteracoes(contexto);
+                RealizarCompra();
             }
             Console.ReadLine();
         }
@@ -32,6 +31,17 @@ namespace EntityFrameworkCore
             var serviceProvider = contexto.GetInfrastructure();
             var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
             loggerFactory.AddProvider(SqlLoggerProvider.Create());
+        }
+
+        private static void RealizarCompra() {
+            var produto = new Produto("Produto 1", "Simples", 1.59) {
+                Unidade = "Unidade"
+            };
+
+            var compra = new Compra();
+            compra.Quantidade = 5;
+            compra.Produto = produto;
+            compra.Preco = compra.Quantidade * produto.PrecoUnitario;
         }
     }
 }

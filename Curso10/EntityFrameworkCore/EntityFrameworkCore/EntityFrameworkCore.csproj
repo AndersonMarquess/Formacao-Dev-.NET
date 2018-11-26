@@ -170,6 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\Compra.cs" />
     <Compile Include="DAO\LojaContext.cs" />
     <Compile Include="DAO\IProdutoDAO.cs" />
     <Compile Include="DAO\ProdutoDAO.cs" />

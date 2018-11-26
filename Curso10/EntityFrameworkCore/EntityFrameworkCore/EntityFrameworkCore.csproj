@@ -170,6 +170,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\20181126165215_Compra.cs" />
+    <Compile Include="Migrations\20181126165215_Compra.designer.cs">
+      <DependentUpon>20181126165215_Compra.cs</DependentUpon>
+    </Compile>
     <Compile Include="models\Compra.cs" />
     <Compile Include="DAO\LojaContext.cs" />
     <Compile Include="DAO\IProdutoDAO.cs" />

@@ -6,6 +6,7 @@ namespace EntityFrameworkCore
     {
         //Define o tipo e o nome da tabela Produtos
         internal DbSet<Produto> Produtos { get; set; }
+        internal DbSet<Compra> Compras { get; set; }
 
         //Configura o local de acesso ao banco
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

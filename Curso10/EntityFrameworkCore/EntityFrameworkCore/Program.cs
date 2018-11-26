@@ -1,9 +1,8 @@
-﻿using EntityFrameworkCore.DAO;
+﻿using EntityFrameworkCore.models;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 
 namespace EntityFrameworkCore
 {
@@ -15,12 +14,9 @@ namespace EntityFrameworkCore
             using(var contexto = new LojaContext()) {
                 ImprimirSQL(contexto);
 
-                //O novo produto criado também será adicionado - Produto e Compra inseridos nas respectivas tabelas.
-                RealizarCompra();
-
-                var compra = RealizarCompra();
-                contexto.Compras.Add(compra);
-                contexto.SaveChanges();
+                var promo = RealizarPromocao();
+                contexto.Promocoes.Add(promo);
+                //contexto.SaveChanges();
 
                 ImprimirAlteracoes(contexto);
             }
@@ -64,6 +60,22 @@ namespace EntityFrameworkCore
             compra.Preco = compra.Quantidade * produto.PrecoUnitario;
 
             return compra;
+        }
+
+        /// <summary>
+        /// Simula uma promoção com relacionamento N:N para com produto
+        /// </summary>
+        /// <returns></returns>
+        private static Promocao RealizarPromocao() {
+            var promo = new Promocao();
+            promo.Nome = "Nome da super promoção";
+            promo.DataInicio = DateTime.Today;
+            promo.DataTermino = DateTime.Today.AddMonths(3);
+
+            var p1 = new Produto();
+            var p2 = new Produto();
+
+            return promo;
         }
     }
 }

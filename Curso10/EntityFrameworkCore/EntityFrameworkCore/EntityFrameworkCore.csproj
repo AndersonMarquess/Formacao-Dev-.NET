@@ -174,6 +174,10 @@
     <Compile Include="Migrations\20181126165215_Compra.designer.cs">
       <DependentUpon>20181126165215_Compra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20181126183503_PromocaoProduto.cs" />
+    <Compile Include="Migrations\20181126183503_PromocaoProduto.designer.cs">
+      <DependentUpon>20181126183503_PromocaoProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="models\Compra.cs" />
     <Compile Include="DAO\LojaContext.cs" />
     <Compile Include="DAO\IProdutoDAO.cs" />
@@ -188,6 +192,8 @@
     </Compile>
     <Compile Include="Migrations\LojaContextModelSnapshot.cs" />
     <Compile Include="models\Produto.cs" />
+    <Compile Include="models\Promocao.cs" />
+    <Compile Include="models\PromocaoProduto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlLoggerProvider.cs" />

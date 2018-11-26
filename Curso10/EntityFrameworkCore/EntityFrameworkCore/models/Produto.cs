@@ -1,11 +1,12 @@
-﻿/// <summary>
+﻿using System.Collections.Generic;
+/// <summary>
 /// Para sincronizar a classe com a tabela:
 ///
 /// Add-Migration NomeDaMigracao
 /// Update-Database
 /// 
 /// </summary>
-namespace EntityFrameworkCore
+namespace EntityFrameworkCore.models
 {
     internal class Produto
     {
@@ -14,6 +15,7 @@ namespace EntityFrameworkCore
         public string Categoria { get; set; }
         public double PrecoUnitario { get; set; }
         public string Unidade { get; set; }
+        public List<PromocaoProduto> PromocaoProdutos { get; set; }
 
         public Produto(string nome, string categoria, double precoUnitario) {
             Nome = nome;

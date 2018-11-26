@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFrameworkCore.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

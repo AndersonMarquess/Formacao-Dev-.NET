@@ -4,8 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace EntityFrameworkCore
-{
+namespace EntityFrameworkCore {
     class Program {
 
         static void Main(string[] args) {
@@ -14,16 +13,34 @@ namespace EntityFrameworkCore
             using(var contexto = new LojaContext()) {
                 ImprimirSQL(contexto);
 
-                //var promo = RealizarPromocao();
-                //contexto.Promocoes.Add(promo);
-                //var p = contexto.Promocoes.Find(1);
-                //contexto.Promocoes.Remove(p);
-
+                Cliente cliente = GerarClientePadrao();
+                contexto.Clientes.Add(cliente);
                 contexto.SaveChanges();
 
                 ImprimirAlteracoes(contexto);
             }
             Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Endereço do cliente também é mapeado e persistido pelo entity, por que ela está relacionada ao Cliente.
+        /// </summary>
+        private static Cliente GerarClientePadrao() {
+            var cliente = new Cliente {
+                Nome = "Cliente 01"
+            };
+
+            var endereco = new Endereco() {
+                Logradouro = "Av. Padrão",
+                Numero = "510B",
+                Complemento = "",
+                Bairro = "Centro",
+                Cidade = "Cidade padrão",
+                CEP = "12345-542"
+            };
+
+            cliente.EnderecoDeEntrega = endereco;
+            return cliente;
         }
 
         /// <summary>
@@ -49,7 +66,7 @@ namespace EntityFrameworkCore
         }
 
         /// <summary>
-        /// Simula uma compra
+        /// Simula uma compra, por se tratar de um novo produto, o mesmo será inserido ao banco junto com a compra.
         /// </summary>
         /// <returns></returns>
         private static Compra RealizarCompra() {

@@ -1,8 +1,10 @@
 ﻿using EntityFrameworkCore.models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 
 namespace EntityFrameworkCore {
     class Program {
@@ -13,9 +15,11 @@ namespace EntityFrameworkCore {
             using(var contexto = new LojaContext()) {
                 ImprimirSQL(contexto);
 
-                Cliente cliente = GerarClientePadrao();
-                contexto.Clientes.Add(cliente);
-                contexto.SaveChanges();
+                RealizarBuscaComJOIN(contexto);
+                
+                //var promo = InserirPromocaoComCondicao(contexto);
+                //contexto.Promocoes.Add(promo);
+                //contexto.SaveChanges();
 
                 ImprimirAlteracoes(contexto);
             }
@@ -23,7 +27,47 @@ namespace EntityFrameworkCore {
         }
 
         /// <summary>
+        /// Faz um select no banco trazendo dados da tabela Promocoes e Produtos usando o JOIN(Include)
+        /// </summary>
+        /// <param name="contexto"></param>
+        private static void RealizarBuscaComJOIN(LojaContext contexto) {
+            //select * from PROMOCOES as P 
+            //inner join PROMOCAOPRODUTOS as PP on PP.PROMOCAOID = P.ID
+            //inner join PRODUTOS as PD on PD.ID = PP.PRODUTOID
+            var promocao = contexto.Promocoes
+                .Include(p => p.Produtos)
+                .ThenInclude(pp => pp.Produto)
+                .FirstOrDefault();
+
+            Console.WriteLine("Produtos da promoção");
+            promocao.Produtos.ForEach(p => Console.WriteLine(p.Produto));
+        }
+
+        /// <summary>
+        /// Realiza um select com where e uso o resultado para criar uma promoção
+        /// </summary>
+        /// <param name="contexto"></param>
+        /// <returns></returns>
+        private static Promocao InserirPromocaoComCondicao(LojaContext contexto) {
+            var promocao = new Promocao() {
+                Nome = "Promoção e pra mocinha",
+                DataInicio = DateTime.Today,
+                DataTermino = DateTime.Today.AddMonths(1)
+            };
+
+            //Select * From PRODUTOS as P where P.Categoria = "Jogo"
+            var produtos = contexto.Produtos.Where(p => p.Categoria == "Jogo").ToList();
+
+            foreach(var item in produtos) {
+                promocao.AddProdutos(item);
+            }
+
+            return promocao;
+        }
+
+        /// <summary>
         /// Endereço do cliente também é mapeado e persistido pelo entity, por que ela está relacionada ao Cliente.
+        /// Relacionamento do tipo 1:1
         /// </summary>
         private static Cliente GerarClientePadrao() {
             var cliente = new Cliente {

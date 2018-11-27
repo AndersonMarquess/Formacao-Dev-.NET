@@ -15,15 +15,38 @@ namespace EntityFrameworkCore {
             using(var contexto = new LojaContext()) {
                 ImprimirSQL(contexto);
 
-                RealizarBuscaComJOIN(contexto);
-                
-                //var promo = InserirPromocaoComCondicao(contexto);
-                //contexto.Promocoes.Add(promo);
-                //contexto.SaveChanges();
+                SelectComJoin(contexto);
 
                 ImprimirAlteracoes(contexto);
             }
             Console.ReadLine();
+        }
+
+        private static void SelectComJoin(LojaContext contexto) {
+            //Select do cliente com left join na tabela enderecos
+            var cliente = contexto.Clientes
+                .Include(e => e.EnderecoDeEntrega)
+                .FirstOrDefault();
+            Console.WriteLine(cliente.EnderecoDeEntrega.Logradouro);
+
+            //Join do produto com compras =>
+            //traga a quantidade comprada do item especificado onde o id do produto for igual a 2002
+            var produto = contexto.Produtos
+                .Include(p => p.Compras)
+                .Where(p => p.Id == 2002)
+                .FirstOrDefault();
+
+            //Extensão para adição de where, filtra e adiciona o resultado na referência
+            contexto.Entry(produto)
+                .Collection(p => p.Compras)
+                .Query()
+                .Where(c => c.Preco > 10)
+                .Load();
+
+            Console.WriteLine("Exibindo compras do produto: " + produto.Nome);
+            foreach(var item in produto.Compras) {
+                Console.WriteLine(item.Preco);
+            }
         }
 
         /// <summary>

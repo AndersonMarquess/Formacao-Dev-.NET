@@ -16,6 +16,7 @@ namespace EntityFrameworkCore.models
         public double PrecoUnitario { get; set; }
         public string Unidade { get; set; }
         public List<PromocaoProduto> PromocaoProdutos { get; set; }
+        public List<Compra> Compras{ get; set; }
 
         public Produto(string nome, string categoria, double precoUnitario) {
             Nome = nome;

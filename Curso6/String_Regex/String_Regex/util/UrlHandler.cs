@@ -6,6 +6,7 @@ namespace String_Regex.util {
     /// </summary>
     class UrlHandler {
 
+        private readonly string _argumentos;
         public string Url { get; }
 
         /// <summary>
@@ -18,7 +19,33 @@ namespace String_Regex.util {
                 throw new ArgumentNullException("Argumento \""+nameof(url)+"\" Não pode ser vazio ou nulo.");
             }
 
+            var index = url.IndexOf("?");
+            _argumentos = url.Substring(index++);
+
             Url = url;
+        }
+
+        /// <summary>
+        /// Com base no nome do parâmetro, retorna o seu valor.
+        /// 
+        /// Ex: site.com.br/args?arg1=ola&arg2=mundo
+        /// getValor(arg2) -> mundo
+        /// 
+        /// </summary>
+        /// <param name="nomeParametro"></param>
+        /// <returns></returns>
+        public string getValor(string nomeParametro) {
+            var parametroComIgual = nomeParametro+"=";
+            var indexInicio = _argumentos.IndexOf(parametroComIgual.ToLower());
+
+            string resultado = _argumentos.Substring(indexInicio + parametroComIgual.Length);
+
+            var indexFim = resultado.IndexOf('&');
+
+            if(indexFim < 0)
+                return resultado;
+
+            return resultado.Remove(indexFim);
         }
     }
 }

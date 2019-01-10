@@ -1,9 +1,18 @@
-﻿using System;
+﻿using String_Regex.util;
+using System;
 
 namespace String_Regex {
     class Program {
         static void Main(string[] args) {
-            tratarStringPadrao();
+            //tratarStringPadrao();
+
+            var url = @"http://www.site.com/pagina?
+                            arg1=hello
+                           &arg2=world
+                           &arg3=code";
+
+            UrlHandler urlHandler = new UrlHandler(url);
+            Console.WriteLine(urlHandler.getValor("aRG2"));
 
             Console.ReadLine();
         }

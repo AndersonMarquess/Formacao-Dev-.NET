@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace String_Regex {
     class Program {
@@ -20,7 +16,8 @@ namespace String_Regex {
         /// </summary>
         private static void tratarStringPadrao() {
             string url = "pagina?argumentos";
-            var resultado = url.Substring(7);
+            var index = url.IndexOf("?");
+            var resultado = url.Substring(index);
             Console.WriteLine("Resultado da substring: " + resultado);
         }
     }

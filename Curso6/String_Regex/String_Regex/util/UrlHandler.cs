@@ -35,8 +35,10 @@ namespace String_Regex.util {
         /// <param name="nomeParametro"></param>
         /// <returns></returns>
         public string getValor(string nomeParametro) {
+            string argumentosLowerCase = _argumentos.ToLower();
+
             var parametroComIgual = nomeParametro+"=";
-            var indexInicio = _argumentos.IndexOf(parametroComIgual.ToLower());
+            var indexInicio = argumentosLowerCase.IndexOf(parametroComIgual.ToLower());
 
             string resultado = _argumentos.Substring(indexInicio + parametroComIgual.Length);
 

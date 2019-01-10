@@ -7,12 +7,12 @@ namespace String_Regex {
             //tratarStringPadrao();
 
             var url = @"http://www.site.com/pagina?
-                            arg1=hello
-                           &arg2=world
-                           &arg3=code";
+                            arg1=hEllo
+                           &arg2=WorlD
+                           &arg3=coDE";
 
             UrlHandler urlHandler = new UrlHandler(url);
-            Console.WriteLine(urlHandler.getValor("aRG2"));
+            Console.WriteLine(urlHandler.getValor("ArG3"));
 
             Console.ReadLine();
         }

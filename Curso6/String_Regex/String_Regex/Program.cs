@@ -14,8 +14,9 @@ namespace String_Regex {
         }
 
         private static void usandoRegex() {
-            string dado = "Meu número de telefone é: 11-91234-5698";
-            string padraoTelefone = "[0-9]{2}-[0-9]{5}-[0-9]{4}";
+            string dado = "Meu número de telefone é: 011-91234-5698";
+            //[0-9]{2,3} de zero a nove, duas ou três repetições desse bloco
+            string padraoTelefone = "[0-9]{2,3}-?[0-9]{4,5}-?[0-9]{4}";
             Console.WriteLine("O Padrão existe: "+Regex.IsMatch(dado, padraoTelefone));
             Console.WriteLine("Padrão recuperado: "+Regex.Match(dado, padraoTelefone));
         }
